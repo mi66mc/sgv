@@ -97,15 +97,6 @@ public class Voo implements Identifiable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Voo)) return false;
-        Voo voo = (Voo) o;
-        if (this.id == null || voo.id == null) return false;
-        return Objects.equals(id, voo.id);
-    }
-
-    @Override
     public int hashCode() {
         return Objects.hashCode(id);
     }

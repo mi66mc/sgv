@@ -40,15 +40,6 @@ public class Aeroporto implements Identifiable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Aeroporto)) return false;
-        Aeroporto aeroporto = (Aeroporto) o;
-        if (this.id == null || aeroporto.id == null) return false;
-        return Objects.equals(id, aeroporto.id);
-    }
-
-    @Override
     public int hashCode() {
         return Objects.hashCode(id);
     }

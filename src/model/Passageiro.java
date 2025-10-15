@@ -19,7 +19,6 @@ public class Passageiro implements Identifiable {
         this.senha = senha;
     }
 
-    @Override
     public Integer getId() { return id; }
     public void setId(Integer id) { this.id = id; }
 
@@ -34,15 +33,6 @@ public class Passageiro implements Identifiable {
 
     public String getSenha() { return senha; }
     public void setSenha(String senha) { this.senha = senha; }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Passageiro)) return false;
-        Passageiro that = (Passageiro) o;
-        if (this.id == null || that.id == null) return false;
-        return Objects.equals(id, that.id);
-    }
 
     @Override
     public int hashCode() {

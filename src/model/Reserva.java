@@ -56,15 +56,6 @@ public class Reserva implements Identifiable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Reserva)) return false;
-        Reserva reserva = (Reserva) o;
-        if (this.id == null || reserva.id == null) return false;
-        return Objects.equals(id, reserva.id);
-    }
-
-    @Override
     public int hashCode() {
         return Objects.hashCode(id);
     }

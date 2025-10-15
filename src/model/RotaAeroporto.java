@@ -58,15 +58,6 @@ public class RotaAeroporto implements Identifiable {
     public void setPosicao(Integer posicao) { this.posicao = posicao; }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof RotaAeroporto)) return false;
-        RotaAeroporto that = (RotaAeroporto) o;
-        if (this.id == null || that.id == null) return false;
-        return Objects.equals(id, that.id);
-    }
-
-    @Override
     public int hashCode() {
         return Objects.hashCode(id);
     }

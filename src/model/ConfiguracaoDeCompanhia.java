@@ -35,15 +35,6 @@ public class ConfiguracaoDeCompanhia implements Identifiable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof ConfiguracaoDeCompanhia)) return false;
-        ConfiguracaoDeCompanhia that = (ConfiguracaoDeCompanhia) o;
-        if (this.id == null || that.id == null) return false;
-        return Objects.equals(id, that.id);
-    }
-
-    @Override
     public int hashCode() {
         return Objects.hashCode(id);
     }

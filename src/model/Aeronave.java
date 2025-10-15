@@ -45,15 +45,6 @@ public class Aeronave implements Identifiable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Aeronave)) return false;
-        Aeronave aeronave = (Aeronave) o;
-        if (this.id == null || aeronave.id == null) return false;
-        return Objects.equals(id, aeronave.id);
-    }
-
-    @Override
     public int hashCode() {
         return Objects.hashCode(id);
     }

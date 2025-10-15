@@ -50,16 +50,7 @@ public class Rota implements Identifiable {
             parada.setRota(null);
         }
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Rota)) return false;
-        Rota rota = (Rota) o;
-        if (this.id == null || rota.id == null) return false;
-        return Objects.equals(id, rota.id);
-    }
-
+    
     @Override
     public int hashCode() {
         return Objects.hashCode(id);

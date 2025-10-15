@@ -40,15 +40,6 @@ public class Gerente implements Identifiable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Gerente)) return false;
-        Gerente gerente = (Gerente) o;
-        if (this.id == null || gerente.id == null) return false;
-        return Objects.equals(id, gerente.id);
-    }
-
-    @Override
     public int hashCode() {
         return Objects.hashCode(id);
     }
