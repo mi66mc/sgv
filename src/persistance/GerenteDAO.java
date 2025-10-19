@@ -23,7 +23,7 @@ public class GerenteDAO {
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_SQL, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, gerente.getNome());
             preparedStatement.setString(2, gerente.getSenha());
-            preparedStatement.setInt(3, gerente.getCompanhiaId());
+            preparedStatement.setLong(3, gerente.getCompanhiaId());
             preparedStatement.executeUpdate();
             try (ResultSet rs = preparedStatement.getGeneratedKeys()) {
                 if (rs.next()) {
@@ -74,8 +74,8 @@ public class GerenteDAO {
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_SQL)) {
             preparedStatement.setString(1, gerente.getNome());
             preparedStatement.setString(2, gerente.getSenha());
-            preparedStatement.setInt(3, gerente.getCompanhiaId());
-            preparedStatement.setInt(4, gerente.getId());
+            preparedStatement.setLong(3, gerente.getCompanhiaId());
+            preparedStatement.setLong(4, gerente.getId());
             preparedStatement.executeUpdate();
         }
     }

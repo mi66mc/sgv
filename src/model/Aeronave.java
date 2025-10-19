@@ -1,19 +1,17 @@
 package model;
 
-import java.util.Objects;
-
 public class Aeronave implements Identifiable {
-    private Integer id;
+    private long id;
     private String nome;
     private Double peso;
-    private Integer qtdAssentosTotal;
+    private long qtdAssentosTotal;
 
-    private Integer companhiaId;
+    private long companhiaId;
     private CompanhiaAerea companhia;
 
     public Aeronave() {}
 
-    public Aeronave(Integer id, String nome, Double peso, Integer qtdAssentosTotal, Integer companhiaId, CompanhiaAerea companhia) {
+    public Aeronave(long id, String nome, Double peso, long qtdAssentosTotal, long companhiaId, CompanhiaAerea companhia) {
         this.id = id;
         this.nome = nome;
         this.peso = peso;
@@ -23,8 +21,8 @@ public class Aeronave implements Identifiable {
     }
 
     @Override
-    public Integer getId() { return id; }
-    public void setId(Integer id) { this.id = id; }
+    public long getId() { return id; }
+    public void setId(long id) { this.id = id; }
 
     public String getNome() { return nome; }
     public void setNome(String nome) { this.nome = nome; }
@@ -32,20 +30,15 @@ public class Aeronave implements Identifiable {
     public Double getPeso() { return peso; }
     public void setPeso(Double peso) { this.peso = peso; }
 
-    public Integer getQtdAssentosTotal() { return qtdAssentosTotal; }
-    public void setQtdAssentosTotal(Integer qtdAssentosTotal) { this.qtdAssentosTotal = qtdAssentosTotal; }
+    public long getQtdAssentosTotal() { return qtdAssentosTotal; }
+    public void setQtdAssentosTotal(long qtdAssentosTotal) { this.qtdAssentosTotal = qtdAssentosTotal; }
 
-    public Integer getCompanhiaId() { return companhiaId; }
-    public void setCompanhiaId(Integer companhiaId) { this.companhiaId = companhiaId; }
+    public long getCompanhiaId() { return companhiaId; }
+    public void setCompanhiaId(long companhiaId) { this.companhiaId = companhiaId; }
 
     public CompanhiaAerea getCompanhia() { return companhia; }
     public void setCompanhia(CompanhiaAerea companhia) {
         this.companhia = companhia;
         this.companhiaId = companhia != null ? companhia.getId() : this.companhiaId;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(id);
     }
 }

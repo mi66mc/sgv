@@ -2,33 +2,32 @@ package model;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Objects;
 
 public class Voo implements Identifiable {
-    private Integer id;
+    private long id;
     private LocalDate data;
     private LocalTime hora;
     private FlightStatus status;
-    private Integer qtdAssentos;
+    private long qtdAssentos;
 
-    private Integer pilotoId;
+    private long pilotoId;
     private Piloto piloto;
 
-    private Integer rotaId;
+    private long rotaId;
     private Rota rota;
 
-    private Integer companhiaId;
+    private long companhiaId;
     private CompanhiaAerea companhia;
 
-    private Integer aeronaveId;
+    private long aeronaveId;
     private Aeronave aeronave;
 
     public Voo() {}
 
-    public Voo(Integer id, LocalDate data, LocalTime hora, FlightStatus status, Integer qtdAssentos,
-               Integer pilotoId, Piloto piloto, Integer rotaId, Rota rota,
-               Integer companhiaId, CompanhiaAerea companhia,
-               Integer aeronaveId, Aeronave aeronave) {
+    public Voo(long id, LocalDate data, LocalTime hora, FlightStatus status, long qtdAssentos,
+               long pilotoId, Piloto piloto, long rotaId, Rota rota,
+               long companhiaId, CompanhiaAerea companhia,
+               long aeronaveId, Aeronave aeronave) {
         this.id = id;
         this.data = data;
         this.hora = hora;
@@ -45,8 +44,8 @@ public class Voo implements Identifiable {
     }
 
     @Override
-    public Integer getId() { return id; }
-    public void setId(Integer id) { this.id = id; }
+    public long getId() { return id; }
+    public void setId(long id) { this.id = id; }
 
     public LocalDate getData() { return data; }
     public void setData(LocalDate data) { this.data = data; }
@@ -57,11 +56,11 @@ public class Voo implements Identifiable {
     public FlightStatus getStatus() { return status; }
     public void setStatus(FlightStatus status) { this.status = status; }
 
-    public Integer getQtdAssentos() { return qtdAssentos; }
-    public void setQtdAssentos(Integer qtdAssentos) { this.qtdAssentos = qtdAssentos; }
+    public long getQtdAssentos() { return qtdAssentos; }
+    public void setQtdAssentos(long qtdAssentos) { this.qtdAssentos = qtdAssentos; }
 
-    public Integer getPilotoId() { return pilotoId; }
-    public void setPilotoId(Integer pilotoId) { this.pilotoId = pilotoId; }
+    public long getPilotoId() { return pilotoId; }
+    public void setPilotoId(long pilotoId) { this.pilotoId = pilotoId; }
 
     public Piloto getPiloto() { return piloto; }
     public void setPiloto(Piloto piloto) {
@@ -69,8 +68,8 @@ public class Voo implements Identifiable {
         this.pilotoId = piloto != null ? piloto.getId() : this.pilotoId;
     }
 
-    public Integer getRotaId() { return rotaId; }
-    public void setRotaId(Integer rotaId) { this.rotaId = rotaId; }
+    public long getRotaId() { return rotaId; }
+    public void setRotaId(long rotaId) { this.rotaId = rotaId; }
 
     public Rota getRota() { return rota; }
     public void setRota(Rota rota) {
@@ -78,8 +77,8 @@ public class Voo implements Identifiable {
         this.rotaId = rota != null ? rota.getId() : this.rotaId;
     }
 
-    public Integer getCompanhiaId() { return companhiaId; }
-    public void setCompanhiaId(Integer companhiaId) { this.companhiaId = companhiaId; }
+    public long getCompanhiaId() { return companhiaId; }
+    public void setCompanhiaId(long companhiaId) { this.companhiaId = companhiaId; }
 
     public CompanhiaAerea getCompanhia() { return companhia; }
     public void setCompanhia(CompanhiaAerea companhia) {
@@ -87,17 +86,12 @@ public class Voo implements Identifiable {
         this.companhiaId = companhia != null ? companhia.getId() : this.companhiaId;
     }
 
-    public Integer getAeronaveId() { return aeronaveId; }
-    public void setAeronaveId(Integer aeronaveId) { this.aeronaveId = aeronaveId; }
+    public long getAeronaveId() { return aeronaveId; }
+    public void setAeronaveId(long aeronaveId) { this.aeronaveId = aeronaveId; }
 
     public Aeronave getAeronave() { return aeronave; }
     public void setAeronave(Aeronave aeronave) {
         this.aeronave = aeronave;
         this.aeronaveId = aeronave != null ? aeronave.getId() : this.aeronaveId;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(id);
     }
 }

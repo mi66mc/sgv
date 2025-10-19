@@ -22,7 +22,7 @@ public class ConfiguracaoDeCompanhiaDAO {
         try (Connection connection = DBConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_SQL, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setBoolean(1, configuracao.getPassageiroCancelar());
-            preparedStatement.setInt(2, configuracao.getCompanhiaId());
+            preparedStatement.setLong(2, configuracao.getCompanhiaId());
             preparedStatement.executeUpdate();
             try (ResultSet rs = preparedStatement.getGeneratedKeys()) {
                 if (rs.next()) {
@@ -70,8 +70,8 @@ public class ConfiguracaoDeCompanhiaDAO {
         try (Connection connection = DBConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_SQL)) {
             preparedStatement.setBoolean(1, configuracao.getPassageiroCancelar());
-            preparedStatement.setInt(2, configuracao.getCompanhiaId());
-            preparedStatement.setInt(3, configuracao.getId());
+            preparedStatement.setLong(2, configuracao.getCompanhiaId());
+            preparedStatement.setLong(3, configuracao.getId());
             preparedStatement.executeUpdate();
         }
     }

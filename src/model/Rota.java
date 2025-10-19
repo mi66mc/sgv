@@ -2,10 +2,9 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class Rota implements Identifiable {
-    private Integer id;
+    private long id;
     private String nome;
 
     private List<RotaAeroporto> paradas;
@@ -14,7 +13,7 @@ public class Rota implements Identifiable {
         this.paradas = new ArrayList<>();
     }
 
-    public Rota(Integer id, String nome, List<RotaAeroporto> paradas) {
+    public Rota(long id, String nome, List<RotaAeroporto> paradas) {
         this.id = id;
         this.nome = nome;
         this.paradas = paradas != null ? paradas : new ArrayList<>();
@@ -24,8 +23,8 @@ public class Rota implements Identifiable {
     }
 
     @Override
-    public Integer getId() { return id; }
-    public void setId(Integer id) { this.id = id; }
+    public long getId() { return id; }
+    public void setId(long id) { this.id = id; }
 
     public String getNome() { return nome; }
     public void setNome(String nome) { this.nome = nome; }
@@ -49,10 +48,5 @@ public class Rota implements Identifiable {
         if (this.paradas.remove(parada)) {
             parada.setRota(null);
         }
-    }
-    
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(id);
     }
 }

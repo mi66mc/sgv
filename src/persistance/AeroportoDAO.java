@@ -24,7 +24,7 @@ public class AeroportoDAO {
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_SQL, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, aeroporto.getNome());
             preparedStatement.setString(2, aeroporto.getLocalizacao());
-            preparedStatement.setInt(3, aeroporto.getCompanhiaId());
+            preparedStatement.setLong(3, aeroporto.getCompanhiaId());
             preparedStatement.executeUpdate();
             try (ResultSet rs = preparedStatement.getGeneratedKeys()) {
                 if (rs.next()) {
@@ -75,8 +75,8 @@ public class AeroportoDAO {
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_SQL)) {
             preparedStatement.setString(1, aeroporto.getNome());
             preparedStatement.setString(2, aeroporto.getLocalizacao());
-            preparedStatement.setInt(3, aeroporto.getCompanhiaId());
-            preparedStatement.setInt(4, aeroporto.getId());
+            preparedStatement.setLong(3, aeroporto.getCompanhiaId());
+            preparedStatement.setLong(4, aeroporto.getId());
             preparedStatement.executeUpdate();
         }
     }
@@ -93,7 +93,7 @@ public class AeroportoDAO {
         List<Aeroporto> aeroportos = new ArrayList<>();
         try (Connection connection = DBConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_BY_COMPANHIA_ID_SQL)) {
-            preparedStatement.setInt(1, companhiaId);
+            preparedStatement.setLong(1, companhiaId);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
                     Aeroporto aeroporto = new Aeroporto();

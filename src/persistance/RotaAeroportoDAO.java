@@ -21,9 +21,9 @@ public class RotaAeroportoDAO {
     public RotaAeroporto create(RotaAeroporto rotaAeroporto) throws SQLException {
         try (Connection connection = DBConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_SQL, Statement.RETURN_GENERATED_KEYS)) {
-            preparedStatement.setInt(1, rotaAeroporto.getRotaId());
-            preparedStatement.setInt(2, rotaAeroporto.getAeroportoId());
-            preparedStatement.setInt(3, rotaAeroporto.getPosicao());
+            preparedStatement.setLong(1, rotaAeroporto.getRotaId());
+            preparedStatement.setLong(2, rotaAeroporto.getAeroportoId());
+            preparedStatement.setLong(3, rotaAeroporto.getPosicao());
             preparedStatement.executeUpdate();
             try (ResultSet rs = preparedStatement.getGeneratedKeys()) {
                 if (rs.next()) {
@@ -72,10 +72,10 @@ public class RotaAeroportoDAO {
     public void update(RotaAeroporto rotaAeroporto) throws SQLException {
         try (Connection connection = DBConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_SQL)) {
-            preparedStatement.setInt(1, rotaAeroporto.getRotaId());
-            preparedStatement.setInt(2, rotaAeroporto.getAeroportoId());
-            preparedStatement.setInt(3, rotaAeroporto.getPosicao());
-            preparedStatement.setInt(4, rotaAeroporto.getId());
+            preparedStatement.setLong(1, rotaAeroporto.getRotaId());
+            preparedStatement.setLong(2, rotaAeroporto.getAeroportoId());
+            preparedStatement.setLong(3, rotaAeroporto.getPosicao());
+            preparedStatement.setLong(4, rotaAeroporto.getId());
             preparedStatement.executeUpdate();
         }
     }

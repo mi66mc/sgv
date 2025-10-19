@@ -79,7 +79,7 @@ public class PilotoDAO {
             preparedStatement.setString(2, piloto.getCpf());
             preparedStatement.setString(3, piloto.getEmail());
             preparedStatement.setString(4, piloto.getSenha());
-            preparedStatement.setInt(5, piloto.getId());
+            preparedStatement.setLong(5, piloto.getId());
             preparedStatement.executeUpdate();
         }
     }

@@ -79,7 +79,7 @@ public class CompanhiaAereaDAO {
             preparedStatement.setString(2, companhiaAerea.getNacionalidade());
             preparedStatement.setString(3, companhiaAerea.getEmail());
             preparedStatement.setString(4, companhiaAerea.getSenha());
-            preparedStatement.setInt(5, companhiaAerea.getId());
+            preparedStatement.setLong(5, companhiaAerea.getId());
             preparedStatement.executeUpdate();
         }
     }

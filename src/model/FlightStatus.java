@@ -17,18 +17,18 @@ public enum FlightStatus {
     }
 
     public static FlightStatus fromString(String status) {
-        if (status == null) {
+        if (status == null || status.isBlank()) {
             return null;
         }
-        for (FlightStatus fs : FlightStatus.values()) {
-            if (fs.name().equalsIgnoreCase(status) || fs.dbValue.equalsIgnoreCase(status)) {
+
+        String normalized = status.trim().toLowerCase();
+
+        for (FlightStatus fs : values()) {
+            if (fs.name().toLowerCase().equals(normalized) || fs.dbValue.toLowerCase().equals(normalized)) {
                 return fs;
             }
         }
-        // Fallback
-        if ("Em andamento".equalsIgnoreCase(status)) {
-            return EM_ANDAMENTO;
-        }
-        throw new IllegalArgumentException("Unknown flight status: " + status);
+
+        throw new IllegalArgumentException("Status de voo desconhecido: " + status);
     }
 }

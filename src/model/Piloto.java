@@ -1,9 +1,7 @@
 package model;
 
-import java.util.Objects;
-
 public class Piloto implements Identifiable {
-    private Integer id;
+    private long id;
     private String nome;
     private String cpf;
     private String email;
@@ -11,7 +9,7 @@ public class Piloto implements Identifiable {
 
     public Piloto() {}
 
-    public Piloto(Integer id, String nome, String cpf, String email, String senha) {
+    public Piloto(long id, String nome, String cpf, String email, String senha) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
@@ -20,8 +18,8 @@ public class Piloto implements Identifiable {
     }
 
     @Override
-    public Integer getId() { return id; }
-    public void setId(Integer id) { this.id = id; }
+    public long getId() { return id; }
+    public void setId(long id) { this.id = id; }
 
     public String getNome() { return nome; }
     public void setNome(String nome) { this.nome = nome; }
@@ -34,18 +32,4 @@ public class Piloto implements Identifiable {
 
     public String getSenha() { return senha; }
     public void setSenha(String senha) { this.senha = senha; }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Piloto)) return false;
-        Piloto piloto = (Piloto) o;
-        if (this.id == null || piloto.id == null) return false;
-        return Objects.equals(id, piloto.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(id);
-    }
 }

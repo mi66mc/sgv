@@ -1,21 +1,19 @@
 package model;
 
-import java.util.Objects;
-
 public class RotaAeroporto implements Identifiable {
-    private Integer id;
+    private long id;
 
-    private Integer rotaId;
-    private Integer aeroportoId;
+    private long rotaId;
+    private long aeroportoId;
 
     private Rota rota;
     private Aeroporto aeroporto;
 
-    private Integer posicao;
+    private long posicao;
 
     public RotaAeroporto() {}
 
-    public RotaAeroporto(Integer id, Integer rotaId, Integer aeroportoId, Rota rota, Aeroporto aeroporto, Integer posicao) {
+    public RotaAeroporto(long id, long rotaId, long aeroportoId, Rota rota, Aeroporto aeroporto, long posicao) {
         this.id = id;
         this.rotaId = rotaId;
         this.aeroportoId = aeroportoId;
@@ -25,14 +23,14 @@ public class RotaAeroporto implements Identifiable {
     }
 
     @Override
-    public Integer getId() { return id; }
-    public void setId(Integer id) { this.id = id; }
+    public long getId() { return id; }
+    public void setId(long id) { this.id = id; }
 
-    public Integer getRotaId() { return rotaId; }
-    public void setRotaId(Integer rotaId) { this.rotaId = rotaId; }
+    public long getRotaId() { return rotaId; }
+    public void setRotaId(long rotaId) { this.rotaId = rotaId; }
 
-    public Integer getAeroportoId() { return aeroportoId; }
-    public void setAeroportoId(Integer aeroportoId) { this.aeroportoId = aeroportoId; }
+    public long getAeroportoId() { return aeroportoId; }
+    public void setAeroportoId(long aeroportoId) { this.aeroportoId = aeroportoId; }
 
     public Rota getRota() { return rota; }
     public void setRota(Rota rota) {
@@ -54,21 +52,6 @@ public class RotaAeroporto implements Identifiable {
         this.aeroportoId = aeroporto != null ? aeroporto.getId() : this.aeroportoId;
     }
 
-    public Integer getPosicao() { return posicao; }
-    public void setPosicao(Integer posicao) { this.posicao = posicao; }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(id);
-    }
-
-    @Override
-    public String toString() {
-        return "RotaAeroporto{" +
-                "id=" + id +
-                ", rotaId=" + rotaId +
-                ", aeroportoId=" + aeroportoId +
-                ", posicao=" + posicao +
-                '}';
-    }
+    public long getPosicao() { return posicao; }
+    public void setPosicao(long posicao) { this.posicao = posicao; }
 }

@@ -24,8 +24,8 @@ public class ReservaDAO {
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_SQL, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setTimestamp(1, Timestamp.valueOf(reserva.getReservadoEm()));
             preparedStatement.setBoolean(2, reserva.getCancelado());
-            preparedStatement.setInt(3, reserva.getVooId());
-            preparedStatement.setInt(4, reserva.getPassageiroId());
+            preparedStatement.setLong(3, reserva.getVooId());
+            preparedStatement.setLong(4, reserva.getPassageiroId());
             preparedStatement.executeUpdate();
             try (ResultSet rs = preparedStatement.getGeneratedKeys()) {
                 if (rs.next()) {
@@ -78,9 +78,9 @@ public class ReservaDAO {
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_SQL)) {
             preparedStatement.setTimestamp(1, Timestamp.valueOf(reserva.getReservadoEm()));
             preparedStatement.setBoolean(2, reserva.getCancelado());
-            preparedStatement.setInt(3, reserva.getVooId());
-            preparedStatement.setInt(4, reserva.getPassageiroId());
-            preparedStatement.setInt(5, reserva.getId());
+            preparedStatement.setLong(3, reserva.getVooId());
+            preparedStatement.setLong(4, reserva.getPassageiroId());
+            preparedStatement.setLong(5, reserva.getId());
             preparedStatement.executeUpdate();
         }
     }

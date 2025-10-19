@@ -14,6 +14,8 @@ public class PassageiroDAO {
 
     private static final String INSERT_SQL = "INSERT INTO Passageiro (nome, cpf, email, senha) VALUES (?, ?, ?, ?)";
     private static final String SELECT_BY_ID_SQL = "SELECT id, nome, cpf, email, senha FROM Passageiro WHERE id = ?";
+    private static final String SELECT_BY_EMAIL_SQL = "SELECT id, nome, cpf, email, senha FROM Passageiro WHERE email = ?";
+    private static final String SELECT_BY_CPF_SQL = "SELECT id, nome, cpf, email, senha FROM Passageiro WHERE cpf = ?";
     private static final String SELECT_ALL_SQL = "SELECT id, nome, cpf, email, senha FROM Passageiro";
     private static final String UPDATE_SQL = "UPDATE Passageiro SET nome = ?, cpf = ?, email = ?, senha = ? WHERE id = ?";
     private static final String DELETE_SQL = "DELETE FROM Passageiro WHERE id = ?";
@@ -54,6 +56,44 @@ public class PassageiroDAO {
         return passageiro;
     }
 
+    public Passageiro findByCpf(String cpf) throws SQLException {
+        Passageiro passageiro = null;
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_BY_CPF_SQL)) {
+            preparedStatement.setString(1, cpf);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    passageiro = new Passageiro();
+                    passageiro.setId(resultSet.getInt("id"));
+                    passageiro.setNome(resultSet.getString("nome"));
+                    passageiro.setCpf(resultSet.getString("cpf"));
+                    passageiro.setEmail(resultSet.getString("email"));
+                    passageiro.setSenha(resultSet.getString("senha"));
+                }
+            }
+        }
+        return passageiro;
+    }
+    
+    public Passageiro findByEmail(String email) throws SQLException {
+        Passageiro passageiro = null;
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_BY_EMAIL_SQL)) {
+            preparedStatement.setString(1, email);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    passageiro = new Passageiro();
+                    passageiro.setId(resultSet.getInt("id"));
+                    passageiro.setNome(resultSet.getString("nome"));
+                    passageiro.setCpf(resultSet.getString("cpf"));
+                    passageiro.setEmail(resultSet.getString("email"));
+                    passageiro.setSenha(resultSet.getString("senha"));
+                }
+            }
+        }
+        return passageiro;
+    }
+
     public List<Passageiro> findAll() throws SQLException {
         List<Passageiro> passageiros = new ArrayList<>();
         try (Connection connection = DBConnection.getConnection();
@@ -79,7 +119,7 @@ public class PassageiroDAO {
             preparedStatement.setString(2, passageiro.getCpf());
             preparedStatement.setString(3, passageiro.getEmail());
             preparedStatement.setString(4, passageiro.getSenha());
-            preparedStatement.setInt(5, passageiro.getId());
+            preparedStatement.setLong(5, passageiro.getId());
             preparedStatement.executeUpdate();
         }
     }

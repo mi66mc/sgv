@@ -67,7 +67,7 @@ public class RotaDAO {
         try (Connection connection = DBConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_SQL)) {
             preparedStatement.setString(1, rota.getNome());
-            preparedStatement.setInt(2, rota.getId());
+            preparedStatement.setLong(2, rota.getId());
             preparedStatement.executeUpdate();
         }
     }

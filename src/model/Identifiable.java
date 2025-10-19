@@ -1,5 +1,5 @@
 package model;
 
 public interface Identifiable {
-    Integer getId();
+    long getId();
 }

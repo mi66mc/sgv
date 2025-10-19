@@ -24,8 +24,8 @@ public class AeronaveDAO {
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_SQL, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, aeronave.getNome());
             preparedStatement.setDouble(2, aeronave.getPeso());
-            preparedStatement.setInt(3, aeronave.getQtdAssentosTotal());
-            preparedStatement.setInt(4, aeronave.getCompanhiaId());
+            preparedStatement.setLong(3, aeronave.getQtdAssentosTotal());
+            preparedStatement.setLong(4, aeronave.getCompanhiaId());
             preparedStatement.executeUpdate();
             try (ResultSet rs = preparedStatement.getGeneratedKeys()) {
                 if (rs.next()) {
@@ -78,9 +78,9 @@ public class AeronaveDAO {
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_SQL)) {
             preparedStatement.setString(1, aeronave.getNome());
             preparedStatement.setDouble(2, aeronave.getPeso());
-            preparedStatement.setInt(3, aeronave.getQtdAssentosTotal());
-            preparedStatement.setInt(4, aeronave.getCompanhiaId());
-            preparedStatement.setInt(5, aeronave.getId());
+            preparedStatement.setLong(3, aeronave.getQtdAssentosTotal());
+            preparedStatement.setLong(4, aeronave.getCompanhiaId());
+            preparedStatement.setLong(5, aeronave.getId());
             preparedStatement.executeUpdate();
         }
     }
@@ -97,7 +97,7 @@ public class AeronaveDAO {
         List<Aeronave> aeronaves = new ArrayList<>();
         try (Connection connection = DBConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_BY_COMPANHIA_ID_SQL)) {
-            preparedStatement.setInt(1, companhiaId);
+            preparedStatement.setLong(1, companhiaId);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
                     Aeronave aeronave = new Aeronave();
