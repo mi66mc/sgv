@@ -264,7 +264,7 @@ public class Main {
 								System.out.println("Nenhum voo disponível.");
 								break;
 							} else {
-								printVoos(voos, rotaDAO);
+								printVoos(voos);
 
 								System.out.print("Deseja reservar algum voo? (s/n): ");
 
@@ -303,8 +303,12 @@ public class Main {
 		    		}
 		    		case 4: {
 		    			System.out.println("===== Minhas Reservas =====");
-		    			// Implementar funcionalidade de visualização de reservas aqui
-		    			System.out.println("Funcionalidade de visualização de reservas ainda não implementada.");
+						try {
+							List<Reserva> reservas = reservaDAO.findByUserId(passenger.getId());
+							printReservas(reservas);
+						} catch (SQLException e) {
+							e.printStackTrace();
+						}
 		    			break;
 		    		}
 				}
@@ -316,7 +320,9 @@ public class Main {
     	}
     }
 
-	public static void printVoos(List<Voo> voos, RotaDAO rotaDAO) {
+	public static void printVoos(List<Voo> voos) {
+		RotaDAO rotaDAO = new RotaDAO();
+
 		System.out.println("================================");
 		for (Voo voo : voos) {
 			System.out.println("| ID: " + voo.getId());
@@ -326,16 +332,34 @@ public class Main {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			if (rota != null) {
-				System.out.println("| Rota: " + rota.getNome());
-			} else {
-				System.out.println("| Rota: N/A");
-			}
+			System.out.println("| Rota: " + rota.getNome());
 			System.out.println("| Data: " + voo.getData());
 			System.out.println("| Hora: " + voo.getHora());
 			System.out.println("| Status: " + voo.getStatus());
 			System.out.println("| Quantidade de Assentos: " + voo.getQtdAssentos());
 			System.out.println("================================");
+		}
+	}
+
+	public static void printReservas(List<Reserva> reservas) {
+		VooDAO vooDao = new VooDAO();
+		RotaDAO rotaDAO = new RotaDAO();
+
+		System.out.println("================================");
+		for (Reserva reserva : reservas) {
+			try {
+				Voo voo = vooDao.findById(reserva.getVooId());
+				Rota rota = rotaDAO.findById(voo.getRotaId());
+				System.out.println("| ID: " + reserva.getId());
+				System.out.println("| Reservado Em: " + reserva.getReservadoEm());
+				System.out.println("| Rota: " + rota.getNome());
+				System.out.println("| Data: " + voo.getData());
+				System.out.println("| Hora: " + voo.getHora());
+				System.out.println("| Status: " + voo.getStatus());
+				System.out.println("| Cancelado: " + (reserva.getCancelado() ? "Sim" : "Não"));
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }

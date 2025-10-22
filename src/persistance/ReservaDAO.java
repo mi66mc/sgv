@@ -15,6 +15,7 @@ public class ReservaDAO {
 
     private static final String INSERT_SQL = "INSERT INTO Reserva (reservado_em, cancelado, id_voo, id_passageiro) VALUES (?, ?, ?, ?)";
     private static final String SELECT_BY_ID_SQL = "SELECT id, reservado_em, cancelado, id_voo, id_passageiro FROM Reserva WHERE id = ?";
+    private static final String SELECT_BY_USER_ID_SQL = "SELECT id, reservado_em, cancelado, id_voo, id_passageiro FROM Reserva WHERE id_passageiro = ?";
     private static final String SELECT_ALL_SQL = "SELECT id, reservado_em, cancelado, id_voo, id_passageiro FROM Reserva";
     private static final String UPDATE_SQL = "UPDATE Reserva SET reservado_em = ?, cancelado = ?, id_voo = ?, id_passageiro = ? WHERE id = ?";
     private static final String DELETE_SQL = "DELETE FROM Reserva WHERE id = ?";
@@ -53,6 +54,27 @@ public class ReservaDAO {
             }
         }
         return reserva;
+    }
+
+    public List<Reserva> findByUserId(long id) throws SQLException {
+        List<Reserva> reservas = new ArrayList<>();
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_BY_ID_SQL)) {
+            preparedStatement.setLong(1, id);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    Reserva reserva = new Reserva();
+                    reserva = new Reserva();
+                    reserva.setId(resultSet.getInt("id"));
+                    reserva.setReservadoEm(resultSet.getTimestamp("reservado_em").toLocalDateTime());
+                    reserva.setCancelado(resultSet.getBoolean("cancelado"));
+                    reserva.setVooId(resultSet.getInt("id_voo"));
+                    reserva.setPassageiroId(resultSet.getInt("id_passageiro"));
+                    reservas.add(reserva);
+                }
+            }
+        }
+        return reservas;
     }
 
     public List<Reserva> findAll() throws SQLException {
